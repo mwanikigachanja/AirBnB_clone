@@ -11,7 +11,7 @@ Step 1.
 Clone the repository and cd into the repository
 
 Step 2.
-Inside the repository, there is a "console.py" file which contains the command line interpreter. Run this command in the terminal to see how it works
+Inside this repository, there is a "console.py" file which contains the command line interpreter. Run this command in the terminal to see how it works
 "$ python3 console.py"
 
 Step 3.

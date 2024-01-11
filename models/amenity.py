@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-amenity module inheriting from the BaseModel
+amenity module inheriting from BaseModel
 """
 
 from models.base_model import BaseModel

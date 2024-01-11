@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""State Model that inherits from the BaseModel"""
+"""State Model inheriting from the BaseModel"""
 
 from models.base_model import BaseModel
 

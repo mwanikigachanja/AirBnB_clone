@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Tests Suites for the base model
+Tests Suites for the base model.
 """
 
 import models as md

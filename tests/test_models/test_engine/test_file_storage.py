@@ -5,7 +5,7 @@ import os
 import unittest
 
 """
-Test Suites for the file_storage module
+Test Suites for the file_storage module.
 FileStorage class and the methods
 """
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Unittest for console command interpreter
+Unittest for the console command interpreter
 """
 
 import os

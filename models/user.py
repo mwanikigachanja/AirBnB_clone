@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-User module to represent users
+User module representing users
 """
 
 from models.base_model import BaseModel

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Test Suites for the amenity module
+Test the Suites for the amenity module
 """
 
 from models.amenity import Amenity

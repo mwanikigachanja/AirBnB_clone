@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""serializes instances to a JSON file and
+"""serializes instances to JSON file and
     deserializes JSON file to instances
 """
 

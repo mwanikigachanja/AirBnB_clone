@@ -8,7 +8,7 @@ import models
 
 
 class BaseModel():
-    """This is the parent class where all the classes will inherit from
+    """This is a parent class where all the classes will inherit from
 
    Attributes:
    id: the basemodel id
