@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """Unittest module for the BaseModel Class."""
 
-from models import storage
-from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from test_models import storage
+from test_models.test_base_model import BaseModel
+from test_models.test_engine.test_file_storage import FileStorage
 from datetime import datetime
 import json
 import os

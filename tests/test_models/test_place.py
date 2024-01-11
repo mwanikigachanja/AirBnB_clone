@@ -4,13 +4,13 @@
 import unittest
 from datetime import datetime
 import time
-from models.place import Place
+from test_models.test_place import Place
 import re
 import json
-from models.engine.file_storage import FileStorage
+from test_models.test_engine.test_file_storage import FileStorage
 import os
-from models import storage
-from models.base_model import BaseModel
+from test_models import storage
+from test_models.test_base_model import BaseModel
 
 
 class TestPlace(unittest.TestCase):
