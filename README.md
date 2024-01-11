@@ -4,9 +4,8 @@
 ![hbnb](./hbtn.png)
 
 ## About
-This is the First Project towards our AirBnB clone project at [ALX](alxafrica.com). Done by [Michelle](https://github.com/Michelle-Wanderi) and [Ebenezer](https://github.com/Itsfoss0)
-
-
+This is the First Project towards our AirBnB clone project at [ALX](alxafrica.com). Done by [Charles Mwaniki] (@mwanikigachanja) and
+[OCHEGO FABISH] (@Babuhatarii)
 ## General Use
 Step 1. 
 Clone the repository and cd into the repository
