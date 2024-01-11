@@ -11,11 +11,31 @@ CONTRIBUTORS=$(curl -s "https://api.github.com/repos/$OWNER/$REPO/contributors" 
 echo "# Authors of $REPO" > AUTHORS
 echo >> AUTHORS
 
-# Loop through contributors and fetch their contributions
+# Loop through contributors and fetch their full names
 for CONTRIBUTOR in $CONTRIBUTORS; do
-    CONTRIBUTIONS=$(curl -s "https://api.github.com/repos/$OWNER/$REPO/contributors/$CONTRIBUTOR" | jq -r '.contributions')
-    echo "$CONTRIBUTOR - $CONTRIBUTIONS contributions" >> AUTHORS
+    FULL_NAME=$(curl -s "https://api.github.com/users/$CONTRIBUTOR" | jq -r '.name')
+    echo "$FULL_NAME (@$CONTRIBUTOR)" >> AUTHORS
 done
 
 echo "Authors list generated and saved to AUTHORS file."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
