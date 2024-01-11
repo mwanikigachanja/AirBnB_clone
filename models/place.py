@@ -1,11 +1,26 @@
 #!/usr/bin/python3
-"""Module for Place class."""
+
+"""Places model, inheritting from the BaseModel"""
 
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Class representing a Place."""
+    """
+    Place class
+    Attributes:
+        city_id (str) -> City.id
+        user_id (str) -> City.id
+        name (str) -> name of place
+        description (str) -> description of place
+        number_rooms (int) -> Number of rooms: default is 0
+        number_bathrooms (int) -> Number of bathrooms: default is 0
+        max_guest (int) -> Maximum number of guests: default is 0
+        price_by_night (int) -> charing rate by night: default is 0
+        latitude (float) -> Geographical lattitude
+        longitude (float) -> Geographical longitude
+        amenity_ids (list) -> list of strings of ameninty ID's
+    """
     city_id = ""
     user_id = ""
     name = ""

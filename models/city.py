@@ -1,10 +1,16 @@
 #!/usr/bin/python3
-"""Module for City class."""
+"""
+City Module inheriting from the BaseModel
+"""
 
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """Class representing a City."""
-    state_id = ""
+    """City Class
+    Attributes:
+        state_id (str) -> State.id
+        name (str) -> name of the city
+    """
     name = ""
+    state_id = ""

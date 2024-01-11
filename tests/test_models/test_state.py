@@ -1,52 +1,58 @@
 #!/usr/bin/python3
-"""Unittest module for the State Class."""
 
-import unittest
-from datetime import datetime
-import time
+"""
+Unit tests for the State module
+"""
+
 from models.state import State
-import re
-import json
-from models.engine.file_storage import FileStorage
-import os
-from models import storage
-from models.base_model import BaseModel
+import unittest
 
 
 class TestState(unittest.TestCase):
-
-    """Test Cases for the State class."""
+    """Test Suites for the State Class"""
 
     def setUp(self):
-        """Sets up test methods."""
-        pass
+        """Set up objects to be used in the test"""
+        self.state = State()
 
     def tearDown(self):
-        """Tears down test methods."""
-        self.resetStorage()
-        pass
+        """Tear down resources setup during the tests"""
+        del self.state
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def test_attributes_state(self):
+        """Test attributes for the object"""
+        self.assertTrue(hasattr(self.state, "name"))
 
-    def test_8_instantiation(self):
-        """Tests instantiation of State class."""
+    def test_attributes_type(self):
+        """Afirm attribute types for the object"""
+        self.assertIsInstance(self.state.name, str)
 
-        b = State()
-        self.assertEqual(str(type(b)), "<class 'models.state.State'>")
-        self.assertIsInstance(b, State)
-        self.assertTrue(issubclass(type(b), BaseModel))
+    def test_to_dict_method(self):
+        """Testing to_dict on the child class"""
+        state_dict = self.state.to_dict()
+        self.assertIsInstance(state_dict, dict)
+        self.assertIn("id", state_dict)
+        self.assertIn("created_at", state_dict)
+        self.assertIn("updated_at", state_dict)
+        self.assertIn("__class__", state_dict)
+        self.assertEqual(state_dict["__class__"], "State")
 
-    def test_8_attributes(self):
-        """Tests the attributes of State class."""
-        attributes = storage.attributes()["State"]
-        o = State()
-        for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
-            self.assertEqual(type(getattr(o, k, None)), v)
+    def test_str_method(self):
+        """Test __str__ method of the object"""
+        self.assertIn("[State]", str(self.state))
+
+    def test_class_documentation(self):
+        """Test 'State' class documentation"""
+        self.assertIsNotNone(State.__doc__)
+
+    def test_module_documentation(self):
+        """Test documentation for the state module"""
+        self.assertIsNotNone(State.__module__.__doc__)
+
+    def test_self_docuentation(self):
+        self.assertIsNotNone(self.__class__.__doc__)
+        self.assertIsNotNone(self.__module__.__doc__)
+
 
 if __name__ == "__main__":
     unittest.main()

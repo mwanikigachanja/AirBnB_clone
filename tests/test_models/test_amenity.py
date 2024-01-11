@@ -1,52 +1,61 @@
 #!/usr/bin/python3
-"""Unittest module for the Amenity Class."""
+"""
+Test Suites for the amenity module
+"""
 
-import unittest
-from datetime import datetime
-import time
 from models.amenity import Amenity
-import re
-import json
-from models.engine.file_storage import FileStorage
-import os
-from models import storage
-from models.base_model import BaseModel
+import unittest
 
 
-class TestAmenity(unittest.TestCase):
+class TestAmenityModel(unittest.TestCase):
+    """
+    Test Cases for the Amenity model
+    """
 
-    """Test Cases for the Amenity class."""
-
+    @classmethod
     def setUp(self):
-        """Sets up test methods."""
-        pass
+        """setup resources to be used in the test"""
+        self.amenity = Amenity()
 
+    @classmethod
     def tearDown(self):
-        """Tears down test methods."""
-        self.resetStorage()
-        pass
+        """Tear down the resources after running the tests"""
+        del self.amenity
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def test_attributes(self):
+        """Test for attributes of the objects"""
+        self.assertTrue(hasattr(self.amenity, "name"))
 
-    def test_8_instantiation(self):
-        """Tests instantiation of Amenity class."""
+    def test_attribute_type(self):
+        """Assert that the attribute is of the right type"""
+        self.assertIsInstance(self.amenity.name, str)
 
-        b = Amenity()
-        self.assertEqual(str(type(b)), "<class 'models.amenity.Amenity'>")
-        self.assertIsInstance(b, Amenity)
-        self.assertTrue(issubclass(type(b), BaseModel))
+    def test_str_method(self):
+        """Test the __str__ method on the object"""
+        self.assertIsNotNone(self.amenity.__str__())
+        self.assertIn("[Amenity]", self.amenity.__str__())
 
-    def test_8_attributes(self):
-        """Tests the attributes of Amenity class."""
-        attributes = storage.attributes()["Amenity"]
-        o = Amenity()
-        for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
-            self.assertEqual(type(getattr(o, k, None)), v)
+    def test_to_dict_method(self):
+        """Test the to_dict method"""
+        amenity_dict = self.amenity.to_dict()
+        self.assertIsInstance(amenity_dict, dict)
+        self.assertIn("id", amenity_dict)
+        self.assertIn("created_at", amenity_dict)
+        self.assertIn("updated_at", amenity_dict)
+        self.assertEqual(amenity_dict["__class__"], "Amenity")
+
+    def test_class_documentation(self):
+        """Test for the 'Amenity' class documentation"""
+        self.assertTrue(isinstance(Amenity.__doc__, str))
+
+    def test_module_documentation(self) -> None:
+        """Test documentation for the 'amenity' module"""
+        self.assertIsNotNone(Amenity.__module__.__doc__)
+
+    def test_self_docuentation(self):
+        """Test documentation for this class"""
+        self.assertIsNotNone(self.__class__.__doc__)
+
 
 if __name__ == "__main__":
     unittest.main()

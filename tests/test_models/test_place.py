@@ -1,52 +1,63 @@
 #!/usr/bin/python3
-"""Unittest module for the Place Class."""
 
-import unittest
-from datetime import datetime
-import time
+"""
+Unittests Tests for the place module
+"""
+
 from models.place import Place
-import re
-import json
-from models.engine.file_storage import FileStorage
-import os
-from models import storage
-from models.base_model import BaseModel
+import unittest
 
 
 class TestPlace(unittest.TestCase):
+    """Test Suites for the Place class"""
 
-    """Test Cases for the Place class."""
+    @classmethod
+    def setUp(self) -> None:
+        """Setup resources for running tests"""
+        self.place = Place()
 
-    def setUp(self):
-        """Sets up test methods."""
-        pass
+    @classmethod
+    def tearDown(self) -> None:
+        """Clean up resources after running the tests"""
+        del self.place
 
-    def tearDown(self):
-        """Tears down test methods."""
-        self.resetStorage()
-        pass
+    def tests_attributes(self) -> None:
+        """Test for presece of attributes"""
+        self.assertTrue(hasattr(self.place, "city_id"))
+        self.assertTrue(hasattr(self.place, "user_id"))
+        self.assertTrue(hasattr(self.place, "name"))
+        self.assertIsNotNone(self.place.description)
+        self.assertIsNotNone(self.place.number_rooms)
+        self.assertIsNotNone(self.place.number_bathrooms)
+        self.assertTrue(hasattr(self.place, "max_guest"))
+        self.assertTrue(hasattr(self.place, "price_by_night"))
+        self.assertTrue(hasattr(self.place, "latitude"))
+        self.assertTrue(hasattr(self.place, "longitude"))
+        self.assertTrue(hasattr(self.place, "amenity_ids"))
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def test_attributes_types(self):
+        """Test the types of attributes"""
+        self.assertIsInstance(self.place.city_id, str)
+        self.assertIsInstance(self.place.user_id, str)
+        self.assertIsInstance(self.place.name, str)
+        self.assertIsInstance(self.place.description, str)
+        self.assertIsInstance(self.place.number_bathrooms, int)
+        self.assertIsInstance(self.place.number_bathrooms, int)
+        self.assertIsInstance(self.place.price_by_night, int)
+        self.assertIsInstance(self.place.latitude, float)
+        self.assertIsInstance(self.place.longitude, float)
+        self.assertIsInstance(self.place.amenity_ids, list)
 
-    def test_8_instantiation(self):
-        """Tests instantiation of Place class."""
+    def test_class_documentation(self):
+        """Test the for class documentation"""
+        self.assertIsNotNone(Place.__doc__)
+        self.assertIsNotNone(self.__class__.__doc__)
 
-        b = Place()
-        self.assertEqual(str(type(b)), "<class 'models.place.Place'>")
-        self.assertIsInstance(b, Place)
-        self.assertTrue(issubclass(type(b), BaseModel))
+    def test_module_documentation(self):
+        """Test for module documentation"""
+        self.assertIsNotNone(Place.__module__.__doc__)
+        self.assertIsNotNone(self.__module__.__doc__)
 
-    def test_8_attributes(self):
-        """Tests the attributes of Place class."""
-        attributes = storage.attributes()["Place"]
-        o = Place()
-        for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
-            self.assertEqual(type(getattr(o, k, None)), v)
 
 if __name__ == "__main__":
     unittest.main()

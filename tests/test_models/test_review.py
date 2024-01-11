@@ -1,52 +1,51 @@
 #!/usr/bin/python3
-"""Unittest module for the Review Class."""
+"""
+Unit test for the review module
+"""
 
-import unittest
-from datetime import datetime
-import time
 from models.review import Review
-import re
-import json
-from models.engine.file_storage import FileStorage
-import os
-from models import storage
-from models.base_model import BaseModel
+import unittest
 
 
-class TestReview(unittest.TestCase):
+class TestReviewModel(unittest.TestCase):
+    """Test suites for the Review class"""
 
-    """Test Cases for the Review class."""
-
+    @classmethod
     def setUp(self):
-        """Sets up test methods."""
-        pass
+        """Setup resources to be used in the tests"""
+        self.review = Review()
 
+    @classmethod
     def tearDown(self):
-        """Tears down test methods."""
-        self.resetStorage()
-        pass
+        """Tear down resources after running the tests"""
+        del self.review
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def test_attributes_review(self):
+        """Test for the presence of all attributes"""
+        self.assertTrue(hasattr(self.review, "text"))
+        self.assertTrue(hasattr(self.review, "place_id"))
+        self.assertTrue(hasattr(self.review, "user_id"))
 
-    def test_8_instantiation(self):
-        """Tests instantiation of Review class."""
+    def test_type_attributes(self):
+        """Test for the types of attributes"""
+        self.assertIsInstance(self.review.text, str)
+        self.assertIsInstance(self.review.place_id, str)
+        self.assertIsInstance(self.review.user_id, str)
 
-        b = Review()
-        self.assertEqual(str(type(b)), "<class 'models.review.Review'>")
-        self.assertIsInstance(b, Review)
-        self.assertTrue(issubclass(type(b), BaseModel))
+    def test_class_documentation(self):
+        """Test 'Review' class Documentation"""
+        self.assertIsNotNone(Review.__doc__)
+        self.assertIsInstance(Review.__doc__, str)
 
-    def test_8_attributes(self):
-        """Tests the attributes of Review class."""
-        attributes = storage.attributes()["Review"]
-        o = Review()
-        for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
-            self.assertEqual(type(getattr(o, k, None)), v)
+    def test_module_documentation(self):
+        """Test documentation for the 'review' module"""
+        self.assertIsNotNone(Review.__module__.__doc__)
+
+    def test_self_docuentation(self):
+        """Test documentation for this class/module"""
+        self.assertIsNotNone(self.__class__.__doc__)
+        self.assertIsInstance(self.__module__.__doc__, str)
+
 
 if __name__ == "__main__":
     unittest.main()

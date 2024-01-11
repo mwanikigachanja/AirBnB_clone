@@ -1,52 +1,64 @@
 #!/usr/bin/python3
-"""Unittest module for the User Class."""
-
+"""
+Test Suites for the User class of the user module
+"""
 import unittest
-from datetime import datetime
-import time
 from models.user import User
-import re
-import json
-from models.engine.file_storage import FileStorage
-import os
-from models import storage
-from models.base_model import BaseModel
 
 
-class TestUser(unittest.TestCase):
-
-    """Test Cases for the User class."""
+class TestUserModel(unittest.TestCase):
+    """ Test the User class"""
 
     def setUp(self):
-        """Sets up test methods."""
-        pass
+        """
+        Setup resources to be used in the tests
+        i) Create a User object
+        """
+        self.user = User()
 
     def tearDown(self):
-        """Tears down test methods."""
-        self.resetStorage()
-        pass
+        """
+        Clean up resources after the tests
+        i) Delete the instance created
+        """
+        del self.user
 
-    def resetStorage(self):
-        """Resets FileStorage data."""
-        FileStorage._FileStorage__objects = {}
-        if os.path.isfile(FileStorage._FileStorage__file_path):
-            os.remove(FileStorage._FileStorage__file_path)
+    def test_attributes(self):
+        """Test attributes for the user object"""
+        self.assertTrue(hasattr(self.user, "email"))
+        self.assertTrue(hasattr(self.user, "password"))
+        self.assertTrue(hasattr(self.user, "first_name"))
+        self.assertTrue(hasattr(self.user, "last_name"))
 
-    def test_8_instantiation(self):
-        """Tests instantiation of User class."""
+    def test_attributes_types(self):
+        """Asert that object attributes are of the right type"""
+        self.assertTrue(type(self.user.email) == str)
+        self.assertTrue(type(self.user.password) == str)
+        self.assertTrue(type(self.user.first_name) == str)
+        self.assertTrue(type(self.user.last_name) == str)
 
-        b = User()
-        self.assertEqual(str(type(b)), "<class 'models.user.User'>")
-        self.assertIsInstance(b, User)
-        self.assertTrue(issubclass(type(b), BaseModel))
+    def test_parent_method_to_dict(self):
+        """Test the to_dict method of the BaseModel"""
+        user_dict = self.user.to_dict()
+        self.assertIsInstance(user_dict, dict)
+        self.assertIn("id", user_dict)
+        self.assertIn("created_at", user_dict)
+        self.assertIn("updated_at", user_dict)
+        self.assertEqual(user_dict["__class__"], "User")
 
-    def test_8_attributes(self):
-        """Tests the attributes of User class."""
-        attributes = storage.attributes()["User"]
-        o = User()
-        for k, v in attributes.items():
-            self.assertTrue(hasattr(o, k))
-            self.assertEqual(type(getattr(o, k, None)), v)
+    def test_class_documentation(self):
+        """Test User class docuemntation"""
+        self.assertIsNotNone(User.__doc__)
+
+    def test_module_documentation(self):
+        """Test module documentation """
+        self.assertIsNotNone(User.__module__.__doc__)
+
+    def test_self_docuentation(self):
+        """Why not test documentation for this class/module"""
+        self.assertIsNotNone(self.__class__.__doc__)
+        self.assertIsNotNone(self.__module__.__doc__)
+
 
 if __name__ == "__main__":
     unittest.main()
