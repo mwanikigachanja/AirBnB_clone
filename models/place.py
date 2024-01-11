@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-"""Places model, inheritting from the BaseModel"""
+"""Places model that inherits from the BaseModel"""
 
 from models.base_model import BaseModel
 

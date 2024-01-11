@@ -14,7 +14,7 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """Contains functionality of the console"""
+    """Contains the functionality of the console"""
     intro = 'Welcome to the interpreter! Type help or ? to list commands.\n'
     prompt = '(hbnb) '
     classes = {
