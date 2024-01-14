@@ -4,7 +4,7 @@ from which all other classes will inherit thier properties"""
 
 import uuid
 from datetime import datetime
-import storage
+import models
 
 
 class BaseModel():
