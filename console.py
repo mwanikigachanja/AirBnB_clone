@@ -127,7 +127,7 @@ class HBNBCommand(cmd.Cmd):
                 del all_instances[key]
                 storage.save()
 
-    def do_all(self, line):
+    def do_all(self, arg):
         """Print string representation of all instances"""
         argl = parse(arg)
         if len(argl) > 0 and argl[0] not in HBNBCommand.__classes:
