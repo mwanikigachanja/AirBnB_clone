@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Print string representation of all instances"""
         argl = parse(arg)
-        if len(argl) > 0 and argl[0] not in HBNBCommand.__classes:
+        if len(argl) > 0 and argl[0] not in self.classes:
             print("** class doesn't exist **")
         else:
             objl = []
