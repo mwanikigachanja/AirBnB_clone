@@ -4,7 +4,7 @@ from which all other classes will inherit thier properties"""
 
 import uuid
 from datetime import datetime
-from models.engine.file_storage import FileStorage
+from models import storage
 
 
 class BaseModel():
@@ -61,7 +61,7 @@ class BaseModel():
         with the current datetime
         """
         self.updated_at = datetime.now()
-        models.storage.save()
+        storage.save()
 
     def to_dict(self):
         """returns a dictionary containing all keys/values
