@@ -4,7 +4,7 @@ from which all other classes will inherit thier properties"""
 
 import uuid
 from datetime import datetime
-import models
+from models.engine.file_storage import FileStorage
 
 
 class BaseModel():
