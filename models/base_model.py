@@ -4,8 +4,7 @@ from which all other classes will inherit thier properties"""
 
 import uuid
 from datetime import datetime
-from models import storage
-
+from models.engine.file_storage import storage
 
 class BaseModel():
     """This is a parent class where all the classes will inherit from
