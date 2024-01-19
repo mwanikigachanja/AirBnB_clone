@@ -39,6 +39,7 @@
   height: 60px;
   justify-content: center;
   min-width: 60px;
+  padding: .4rem;
 }
 
 /* Guests, rooms, and bathrooms information */
@@ -105,13 +106,6 @@
   width: 100%;
 }
 
-/* Align header 1 as screen gets smaller */
-@media only screen and (max-width: 1000px) {
-  .places h1 {
-    width: 95%;
-  }
-}
-
 /* Header 2 style */
 .places h2 {
   font-size: 30px;
@@ -139,4 +133,8 @@
   font-weight: bold;
   margin-bottom: 6px;
   margin-top: 20px;
+}
+
+footer {
+  position: relative;
 }
